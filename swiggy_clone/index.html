@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiggy Clone - Food Delivery</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Using Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sticky Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <svg class="swiggy-icon" viewBox="0 0 512 512" width="40" height="40">
+                    <circle cx="256" cy="256" r="256" fill="#fc8019"/>
+                    <path d="M256 96c-53 0-96 43-96 96 0 71 96 192 96 192s96-121 96-192c0-53-43-96-96-96z" fill="#ffffff"/>
+                    <circle cx="256" cy="192" r="32" fill="#fc8019"/>
+                </svg>
+                <span class="brand-name">SWIGGY</span>
+            </div>
+            
+            <div class="search-section">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Search for dishes, restaurants...">
+                </div>
+            </div>
+
+            <div class="cart-section">
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cartBadge" class="cart-badge">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <h2 class="section-title">What's on your mind?</h2>
+            <div class="categories-slider-container">
+                <button class="scroll-btn left-btn" id="scrollLeft"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="categories-slider" id="categoriesContainer">
+                    <!-- Categories will be injected here by JS -->
+                </div>
+                <button class="scroll-btn right-btn" id="scrollRight"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Restaurant Chains Section -->
+        <section class="restaurants-section">
+            <h2 class="section-title">Top restaurant chains in Mumbai</h2>
+            <div class="restaurants-grid" id="restaurantsContainer">
+                <!-- Restaurant cards will be injected here by JS -->
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
