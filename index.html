@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swiggy Clone - Food Delivery</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Using Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Sticky Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
+        <div class="nav-container default-nav">
+            <!-- Logo -->
             <div class="logo-section">
                 <svg class="swiggy-icon" viewBox="0 0 512 512" width="40" height="40">
                     <circle cx="256" cy="256" r="256" fill="#fc8019"/>
@@ -22,7 +21,16 @@
                 </svg>
                 <span class="brand-name">SWIGGY</span>
             </div>
-            
+
+            <!-- Delivery Location -->
+            <div class="location-section" id="locationSection">
+                <div class="location-label">
+                    <i class="fa-solid fa-location-dot"></i> Other <i class="fa-solid fa-chevron-down location-arrow"></i>
+                </div>
+                <div class="location-address">New Delhi</div>
+            </div>
+
+            <!-- Search -->
             <div class="search-section">
                 <div class="search-bar">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -30,10 +38,30 @@
                 </div>
             </div>
 
+
+
+            <!-- Profile -->
+            <div class="profile-section">
+                <div class="profile-icon"><i class="fa-solid fa-circle-user"></i></div>
+                <span class="profile-name">Raj Nishad</span>
+            </div>
+
+            <!-- Cart -->
             <div class="cart-section">
                 <div class="cart-icon">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span id="cartBadge" class="cart-badge">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scrolled Navigation (Hidden by default) -->
+        <div class="nav-container scrolled-nav" style="display: none;">
+            <div id="navSortPlaceholder"></div>
+            <div class="search-section expanded-search">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="navSearchInput" placeholder="Search for restaurant and food">
                 </div>
             </div>
         </div>
@@ -45,21 +73,148 @@
             <h2 class="section-title">What's on your mind?</h2>
             <div class="categories-slider-container">
                 <button class="scroll-btn left-btn" id="scrollLeft"><i class="fa-solid fa-chevron-left"></i></button>
-                <div class="categories-slider" id="categoriesContainer">
-                    <!-- Categories will be injected here by JS -->
-                </div>
+                <div class="categories-slider" id="categoriesContainer"></div>
                 <button class="scroll-btn right-btn" id="scrollRight"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
         </section>
 
         <!-- Restaurant Chains Section -->
         <section class="restaurants-section">
-            <h2 class="section-title">Top restaurant chains in Mumbai</h2>
-            <div class="restaurants-grid" id="restaurantsContainer">
-                <!-- Restaurant cards will be injected here by JS -->
+            <div class="restaurants-header">
+                <h2 class="section-title">Top restaurant chains in New Delhi</h2>
+                <!-- Sort By Button -->
+                <div id="origSortPlaceholder">
+                    <div class="sort-wrapper" id="sortWrapper">
+                        <button class="sort-btn" id="sortBtn">
+                            <i class="fa-solid fa-arrow-up-wide-short"></i>
+                            Sort By
+                            <i class="fa-solid fa-chevron-down sort-chevron"></i>
+                        </button>
+                    <!-- Sort Popup -->
+                    <div class="sort-popup" id="sortPopup">
+                        <div class="sort-popup-title">Sort By</div>
+                        <ul class="sort-options" id="sortOptions">
+                            <li class="sort-option active" data-value="relevance">
+                                <span>Relevance</span>
+                                <span class="sort-radio"></span>
+                            </li>
+                            <li class="sort-option" data-value="deliveryTime">
+                                <span>Delivery Time</span>
+                                <span class="sort-radio"></span>
+                            </li>
+                            <li class="sort-option" data-value="rating">
+                                <span>Rating</span>
+                                <span class="sort-radio"></span>
+                            </li>
+                            <li class="sort-option" data-value="costLow">
+                                <span>Cost: Low to High</span>
+                                <span class="sort-radio"></span>
+                            </li>
+                            <li class="sort-option" data-value="costHigh">
+                                <span>Cost: High to Low</span>
+                                <span class="sort-radio"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+            </div>
+            <div class="restaurants-grid" id="restaurantsContainer"></div>
         </section>
     </main>
+
+    <footer class="footer">
+        <!-- App Download Section -->
+        <div class="footer-app-section">
+            <div class="app-section-content">
+                <h2>For better experience,download the Swiggy app now</h2>
+                <div class="app-buttons">
+                    <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/portal/m/play_store.png" alt="Google Play">
+                    <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/portal/m/app_store.png" alt="App Store">
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Footer Links -->
+        <div class="footer-main-section">
+            <div class="footer-container">
+                <!-- Column 1: Brand -->
+                <div class="footer-col brand-col">
+                    <div class="footer-logo">
+                        <svg class="swiggy-icon" viewBox="0 0 512 512" width="40" height="40">
+                            <circle cx="256" cy="256" r="256" fill="#fc8019"/>
+                            <path d="M256 96c-53 0-96 43-96 96 0 71 96 192 96 192s96-121 96-192c0-53-43-96-96-96z" fill="#ffffff"/>
+                            <circle cx="256" cy="192" r="32" fill="#fc8019"/>
+                        </svg>
+                        <span class="brand-name">Swiggy</span>
+                    </div>
+                    <p class="copyright">&copy; 2026 Swiggy Limited</p>
+                </div>
+
+                <!-- Column 2: Company -->
+                <div class="footer-col">
+                    <h3 class="footer-title">Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Swiggy Corporate</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Swiggy One</a></li>
+                        <li><a href="#">Swiggy Instamart</a></li>
+                        <li><a href="#">Swiggy Dineout</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Contact & Legal -->
+                <div class="footer-col">
+                    <h3 class="footer-title">Contact us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help & Support</a></li>
+                        <li><a href="#">Partner with us</a></li>
+                        <li><a href="#">Ride with us</a></li>
+                    </ul>
+                    <h3 class="footer-title mt-footer">Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Available In -->
+                <div class="footer-col">
+                    <h3 class="footer-title">Available in:</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Bangalore</a></li>
+                        <li><a href="#">Gurgaon</a></li>
+                        <li><a href="#">Hyderabad</a></li>
+                        <li><a href="#">Delhi</a></li>
+                        <li><a href="#">Mumbai</a></li>
+                        <li><a href="#">Pune</a></li>
+                    </ul>
+                    <button class="cities-btn">679 cities <i class="fa-solid fa-chevron-down"></i></button>
+                </div>
+
+                <!-- Column 5: Life at Swiggy & Socials -->
+                <div class="footer-col">
+                    <h3 class="footer-title">Life at Swiggy</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Explore with Swiggy</a></li>
+                        <li><a href="#">Swiggy News</a></li>
+                        <li><a href="#">Snackables</a></li>
+                    </ul>
+                    <h3 class="footer-title mt-footer">Social Links</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
