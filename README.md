@@ -102,8 +102,7 @@ Food-Delivery-UI/
 Add screenshots of your project here.
 
 ```md
-<img width="2522" height="1318" alt="image" src="https://github.com/user-attachments/assets/871841b1-d04e-4a48-a097-c3d76fc76bf4" />
-<img width="2528" height="1316" alt="image" src="https://github.com/user-attachments/assets/f7f6a531-2802-41a6-b206-b2714337213a" />
+
 
 
 ```
